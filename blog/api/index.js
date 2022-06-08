@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const authRoute = require('./routers/auth.js');
+const userRoute = require('./routers/users.js');
 
 const app = express();
 
@@ -21,7 +22,8 @@ const PORT = process.env.PORT || 3300;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/auth', authRoute)
+app.use('/api/auth', authRoute);
+app.use('/api/users', userRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
