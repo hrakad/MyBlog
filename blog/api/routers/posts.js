@@ -37,5 +37,24 @@ router.put('/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json(error)
   }
+});
+
+//Delete Post
+router.delete('/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (post.username === req.body.username) {
+      try {
+        await post.delete();
+        res.status(200).send('Post has been deleted!')
+      } catch (error) {
+        res.status(500).json(error);
+      }
+    } else {
+      res.status(401).send(`You can't delete this post!`)
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
 })
 module.exports = router;
