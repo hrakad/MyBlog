@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const authRoute = require('./routers/auth.js');
 const userRoute = require('./routers/users.js');
 const postRoute = require('./routers/posts.js');
+const categoryRoute = require('./routers/categories.js');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
+app.use('/api/categories', categoryRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
