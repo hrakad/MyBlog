@@ -1,16 +1,19 @@
 const express = require('express');
+const cors = require('cors')
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const authRoute = require('./routers/auth.js');
 const userRoute = require('./routers/users.js');
 const postRoute = require('./routers/posts.js');
 const categoryRoute = require('./routers/categories.js');
+const path = require('path');
 
 const multer = require('multer');
 
 const app = express();
 
 dotenv.config();
+app.use(cors())
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
