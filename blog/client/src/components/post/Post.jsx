@@ -4,16 +4,14 @@ import './post.css';
 export default function Post({ post }) {
   return (
     <div className="post">
-      <img
-        className="postImg"
-        src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg"
-        alt=""
-      />
+      {post.photo && <img className="postImg" src={post.photo} alt="" />}
       <div className="postInfo">
         <div className="postCategs">
-          <span className="postCategs">Music</span>
-          <span className="postCategs">Life</span>
+          {post.categories.map((c) => (
+            <span className="postCategs">{c.name}</span>
+          ))}
         </div>
+
         <span className="postTitle">{post.title}</span>
         <hr />
         <span className="postDate">
