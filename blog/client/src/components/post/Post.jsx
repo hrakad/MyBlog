@@ -1,5 +1,6 @@
 import Posts from '../posts/Posts';
 import './post.css';
+import { Link } from 'react-router-dom';
 
 export default function Post({ post }) {
   return (
@@ -11,8 +12,10 @@ export default function Post({ post }) {
             <span className="postCategs">{c.name}</span>
           ))}
         </div>
+        <Link to={`/post/${post._id} `} className="link">
+          <span className="postTitle">{post.title}</span>
+        </Link>
 
-        <span className="postTitle">{post.title}</span>
         <hr />
         <span className="postDate">
           {new Date(post.createdAt).toDateString()}
