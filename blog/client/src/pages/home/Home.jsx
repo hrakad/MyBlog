@@ -3,15 +3,25 @@ import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
 import './home.css';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const resp = await axios.get('http://localhost:3300/api/posts');
+      //console.log(resp);
+      setPosts(resp.data);
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <>
       <Header />
       <div className="home">
-        <Posts />
+        <Posts posts={posts} />
         <Sidebar />
       </div>
     </>
